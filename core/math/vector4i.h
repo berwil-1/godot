@@ -38,6 +38,8 @@ class String;
 struct Vector4;
 
 struct [[nodiscard]] Vector4i {
+	static const Vector4i ZERO;
+
 	static constexpr int AXIS_COUNT = 4;
 
 	enum Axis {
@@ -147,6 +149,8 @@ struct [[nodiscard]] Vector4i {
 	constexpr Vector4i(int32_t p_x, int32_t p_y, int32_t p_z, int32_t p_w) :
 			x(p_x), y(p_y), z(p_z), w(p_w) {}
 };
+
+inline constexpr Vector4i Vector4i::ZERO = { 0, 0, 0, 0 };
 
 int64_t Vector4i::length_squared() const {
 	return x * (int64_t)x + y * (int64_t)y + z * (int64_t)z + w * (int64_t)w;

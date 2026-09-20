@@ -38,6 +38,7 @@ class String;
 struct Vector2i;
 
 struct [[nodiscard]] Vector2 {
+	static const Vector2 ZERO;
 	static const Vector2 LEFT;
 	static const Vector2 RIGHT;
 	static const Vector2 UP;
@@ -209,6 +210,7 @@ struct [[nodiscard]] Vector2 {
 			x(p_x), y(p_y) {}
 };
 
+inline constexpr Vector2 Vector2::ZERO = { 0, 0 };
 inline constexpr Vector2 Vector2::LEFT = { -1, 0 };
 inline constexpr Vector2 Vector2::RIGHT = { 1, 0 };
 inline constexpr Vector2 Vector2::UP = { 0, -1 };

@@ -39,6 +39,7 @@ struct Vector2;
 struct Vector3i;
 
 struct [[nodiscard]] Vector3 {
+	static const Vector3 ZERO;
 	static const Vector3 LEFT;
 	static const Vector3 RIGHT;
 	static const Vector3 UP;
@@ -225,6 +226,7 @@ struct [[nodiscard]] Vector3 {
 			x(p_x), y(p_y), z(p_z) {}
 };
 
+inline constexpr Vector3 Vector3::ZERO = { 0, 0, 0 };
 inline constexpr Vector3 Vector3::LEFT = { -1, 0, 0 };
 inline constexpr Vector3 Vector3::RIGHT = { 1, 0, 0 };
 inline constexpr Vector3 Vector3::UP = { 0, 1, 0 };
