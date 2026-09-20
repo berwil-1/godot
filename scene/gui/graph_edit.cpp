@@ -440,14 +440,23 @@ void GraphEdit::_update_scroll_offset() {
 
 	set_block_minimum_size_adjust(true);
 
+	const Rect2 visible_rect = Rect2(Vector2(), get_size());
+	const Rect2 cull_rect = Rect2(visible_rect.grow(visible_rect.get_size().length()));
+
 	for (int i = 0; i < get_child_count(); i++) {
 		GraphElement *graph_element = Object::cast_to<GraphElement>(get_child(i));
+
 		if (!graph_element) {
 			continue;
 		}
 
-		Point2 pos = graph_element->get_position_offset() * zoom;
-		pos -= scroll_offset;
+		const Point2 pos = graph_element->get_position_offset() * zoom - scroll_offset;
+		const Rect2 rect = Rect2(pos, graph_element->get_size() * zoom);
+
+		if (!cull_rect.intersects(rect)) {
+			continue;
+		}
+
 		graph_element->set_position(pos);
 		if (graph_element->get_scale() != Vector2(zoom, zoom)) {
 			graph_element->set_scale(Vector2(zoom, zoom));
